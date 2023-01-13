@@ -1,7 +1,6 @@
-// API Keys for Open Weather and PEXELS API (Free for all)
+// API Keys for Open Weather API (Free for all)
 const secrets = {
-    'OPENWEATHER': '',
-    'PEXELS': ''
-}
+  OPENWEATHER: "",
+};
 
 module.exports = secrets;
