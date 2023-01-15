@@ -11,5 +11,5 @@ export function decrypt(text) {
 
 // API Keys for Open Weather API (Free for all) Encrypted
 export const secrets = {
-  OPENWEATHER: "",
+  OPENWEATHER: "NjQ2NWJlYzUxYjRlOWY0MTFjYjkzZDk0ODgxMjEyMjQ=",
 };
