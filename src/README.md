@@ -1,5 +1,6 @@
 ## ToDo
 
-- [ ] Fix cors 
-- [ ] Integrate Babel
-- [ ] Implement Loading Screen
+- [ ] Mobile compatibility
+- [x] Fix cors 
+- [x] Integrate Babel
+- [x] Implement Loading Screen
