@@ -7,7 +7,7 @@ export async function fetchWeather(place) {
   if (arguments.length === 2) {
     try {
       let weather = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?lat=${arguments[0]}&lon=${arguments[1]}&appid=${OW_API_KEY}&units=metric`, 
+        `https://api.openweathermap.org/data/2.5/weather?lat=${arguments[0]}&lon=${arguments[1]}&appid=${OW_API_KEY}&units=metric`, 
         { mode: 'cors'}
       );
       let data = await weather.json();
@@ -18,7 +18,7 @@ export async function fetchWeather(place) {
   } else if (arguments.length === 1) {
     try {
       let weather = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${OW_API_KEY}&units=metric`, 
+        `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${OW_API_KEY}&units=metric`, 
         { mode: 'cors'}
       );
       let data = await weather.json();
@@ -33,7 +33,7 @@ export async function fetchForecast(place) {
   if (arguments.length === 2) {
     try {
       let forecast = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${arguments[0]}&lon=${arguments[1]}&appid=${OW_API_KEY}&units=metric`,
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${arguments[0]}&lon=${arguments[1]}&appid=${OW_API_KEY}&units=metric`,
         { mode: 'cors'}
       );
       let data = await forecast.json();
@@ -44,7 +44,7 @@ export async function fetchForecast(place) {
   } else if (arguments.length === 1) {
     try {
       let forecast = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${OW_API_KEY}&units=metric`, 
+        `https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${OW_API_KEY}&units=metric`, 
         { mode: 'cors'}
       );
       let data = await forecast.json();
@@ -57,7 +57,7 @@ export async function fetchForecast(place) {
 
 export async function fetchWeatherIcon(code) {
   try {
-    let icon = await fetch(`http://openweathermap.org/img/w/${code}.png`, 
+    let icon = await fetch(`https://openweathermap.org/img/w/${code}.png`, 
       { mode: 'cors'});
     return icon;
   } catch (error) {
