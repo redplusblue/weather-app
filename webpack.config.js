@@ -13,7 +13,8 @@ const path = require("path");
       // HTML webpack plugin generates html file with script tag
       plugins: [
         new HtmlWebpackPlugin({
-          title: "Title",
+          title: "What's the Weather?",
+          favicon: "./src/data/favicon.ico",
         }),
       ],
       output: {

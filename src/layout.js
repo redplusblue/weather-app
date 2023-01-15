@@ -139,19 +139,31 @@ export function createLayout() {
   footer.appendChild(info);
 
   // Footer content
-  credits.innerHTML = 
-    "<p> Weather data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a></p>" + 
-    "<p> Fonts & Images provided by <a href='https://adobe.com'>Adobe</a>" +
-    " And <a href='https://www.unsplash.com'>Unsplash</a>"
-  purple.innerHTML = 
-  "<div> red + blue = </div><a href='https://www.github.com/redplusblue'><div id='github-image'></div></a>"
-  info.innerHTML = 
-  "<p> <a href='https://github.com/redplusblue/weather-app/tree/main/src'>Source code</a></p>" + 
-  '<p id="info-btn"><img src="data/info.svg"/> Usage Info'
+  credits.innerHTML =
+    "Weather data provided by <a href='https://openweathermap.org/'>OpenWeatherMap</a><br>" +
+    "Fonts & Images provided by <a href='https://adobe.com'>Adobe" +
+    " And <a href='https://www.unsplash.com'>Unsplash</a>";
+  purple.innerHTML =
+    "<div> red + blue = </div><a href='https://www.github.com/redplusblue'><div id='github-image'></div></a>";
+  info.innerHTML =
+    "<a href='https://github.com/redplusblue/weather-app/tree/main/src'>Source code</a><br>" +
+    "<div id='usage'><div id='info-image'></div><div>Usage Info</div></div>";
 
   document.body.appendChild(header);
   document.body.appendChild(section);
   document.body.appendChild(footer);
+
+  // Dark mode button
+  const darkMode = document.createElement("div");
+  darkMode.id = "dark-mode";
+  const darkModeIcon = document.createElement("div");
+  darkModeIcon.id = "dark-mode-icon";
+  const darkModeText = document.createElement("div");
+  darkModeText.id = "dark-mode-text";
+  darkModeText.innerHTML = "Light Mode";
+  darkMode.appendChild(darkModeIcon);
+  darkMode.appendChild(darkModeText);
+  document.body.appendChild(darkMode);
 
   addListeners();
 }
@@ -159,9 +171,23 @@ export function createLayout() {
 function addListeners() {
   const search = document.getElementById("search");
   const searchButton = document.getElementById("search-button");
+  const section = document.getElementById("section");
+  const footer = document.getElementById("footer");
   const currentLocationButton = document.getElementById(
     "current-location-button"
   );
+  const darkMode = document.getElementById("dark-mode");
+  const darkModeText = document.getElementById("dark-mode-text");
+  const title = document.getElementById("title");
+  darkMode.addEventListener("click", () => {
+    document.body.style.backgroundColor =
+      document.body.style.backgroundColor === "rgba(0, 0, 0, 0.9)"
+        ? "white"
+        : "rgba(0, 0, 0, 0.9)";
+    darkModeText.innerHTML =
+      darkModeText.innerHTML === "Dark Mode" ? "Light Mode" : "Dark Mode";
+    title.style.color = title.style.color === "white" ? "black" : "white";
+  });
 
   searchButton.disabled = true;
   // While the value of search is 0, button remains disabled
@@ -181,26 +207,33 @@ function addListeners() {
   });
 
   searchButton.addEventListener("click", () => {
-    setLocation("search");
-    // To prevent multiple api calls
-    searchButton.disabled = true;
-    currentLocationButton.disabled = false;
-    showCredits();
+      setLocation("search");
+      // To prevent multiple api calls
+      searchButton.disabled = true;
+      currentLocationButton.disabled = false;
+      section.style.display = "flex";
+      footer.style.display = "grid";
   });
 
   currentLocationButton.addEventListener("click", () => {
     setLocation("current");
-    // Empty search bar
-    search.value = "";
-    searchButton.disabled = false;
-    currentLocationButton.disabled = true;
-    showCredits();
-  });
-}
+    // If no location access
+    navigator.permissions.query({ name: "geolocation" }).then((result) => {
+      if (result.state === "denied") {
+        alert("Please allow location access to use this feature");
+      } else {
+        // Empty search bar
+        search.value = "";
+        section.style.display = "flex";
+        footer.style.display = "grid";
+      }
+    });
 
-function showCredits(){
-    const credits = document.getElementById("credits");
-    const purple = document.getElementById("purple");
-    const info = document.getElementById("info");
-    
+    currentLocationButton.disabled = true;
+  });
+
+  // Usage button
+  document.getElementById("usage").addEventListener("click", () => {
+    alert("This application can only be used 3600 times per hour 😏");
+  });
 }

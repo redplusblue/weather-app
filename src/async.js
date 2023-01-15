@@ -1,6 +1,6 @@
-import secrets from "./secrets";
+import { secrets, decrypt } from "./secrets.js";
 
-const OW_API_KEY = secrets["OPENWEATHER"];
+const OW_API_KEY = decrypt(secrets.OPENWEATHER);
 
 export async function fetchWeather(place) {
   // If number of params is 2, then it is lat and lon
@@ -59,8 +59,6 @@ export async function fetchWeatherIcon(code) {
     console.log("Error in fetching icon " + error);
   }
 }
-
-// IDEA: Fetch country flag
 
 export async function fetchCountryName(code) {
   try {

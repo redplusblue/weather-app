@@ -49,38 +49,37 @@ export function setLocation(type) {
             windspeed,
             humidityAndPressure
           );
-        } else if (data.cod === 404) {
+          // Fetch forecast
+          fetchForecast(place)
+            .then((data) => {
+              // console.log(data);
+              if (data.cod === "200") {
+                let forecast = [];
+                for (let i = 0; i < 40; i += 3) {
+                  forecast.push(data.list[i]);
+                }
+                updateForecast(forecast);
+              } else if (data.cod === "404") {
+                alert("Place not found. Please try again.");
+              } else {
+                alert("Something went wrong. Please try again.");
+              }
+            })
+            .catch((error) => {
+              console.log("Error in setting location for forecast: " + error);
+            });
+        } else if (data.cod === '404') {
+          document.getElementById("section").style.display = "none";
+          document.getElementById("footer").style.display = "none";
           alert("Place not found. Please try again.");
-        } else {
-          alert("Something went wrong. Please try again.");
         }
       })
       .catch((error) => {
         console.log("Error in setting location for weather: " + error);
       });
-    // Fetch forecast
-    fetchForecast(place)
-      .then((data) => {
-        // console.log(data);
-        if (data.cod === "200") {
-          let forecast = [];
-          for (let i = 0; i < 40; i += 3) {
-            forecast.push(data.list[i]);
-          }
-          updateForecast(forecast);
-        } else if (data.cod === "404") {
-          alert("Place not found. Please try again.");
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
-      })
-      .catch((error) => {
-        console.log("Error in setting location for forecast: " + error);
-      });
   } else if (type === "current") {
-    try{
-    navigator.geolocation
-      .getCurrentPosition((position) => {
+    try {
+      navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         fetchWeather(latitude, longitude)
           .then((data) => {
@@ -149,10 +148,10 @@ export function setLocation(type) {
           .catch((error) => {
             console.log("Error in setting location for forecast: ");
           });
-      })
-    }catch(error) {
-        alert("Please allow location access to use this feature.");
-        };
+      });
+    } catch (error) {
+      alert("Please allow location access to use this feature.");
+    }
   } else {
     alert("Something went wrong. Please try again.");
   }
@@ -223,7 +222,9 @@ function updateWeather(
   ).toLocaleTimeString()} EST`;
   document.getElementById(
     "windspeed"
-  ).innerText = `Windspeed: ${windspeed} m/s`;
+  ).innerText = `Windspeed: ${windspeed} m/s = ${(windspeed / 1.609).toFixed(
+    2
+  )} mph`;
   document.getElementById(
     "visibility"
   ).innerText = `Visibility: ${visibility} m`;
@@ -235,14 +236,10 @@ function updateWeather(
   factsContainer.style.display = "flex";
   // Add a background image based on location
   fetchWeatherBackground(description).then((response) => {
-    console.log(response);
     // Get section element
     document.getElementById(
       "section"
     ).style.backgroundImage = `url(${response.url})`;
-    document.getElementById(
-      "image-credits"
-    ).innerHTML = `From: <a href="${response.url}">Unsplash</a>`;
   });
 }
 

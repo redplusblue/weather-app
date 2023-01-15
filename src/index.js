@@ -1,5 +1,4 @@
-import { setLocation } from "./content";
 import { createLayout } from "./layout";
 
 createLayout();
-// setLocation("current")
+// document.getElementById("current-location-button").click();
