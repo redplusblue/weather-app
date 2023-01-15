@@ -35,6 +35,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "topbar": "^1.0.1"
   }
 }

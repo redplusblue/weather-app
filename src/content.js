@@ -6,13 +6,31 @@ import {
   fetchForecast,
 } from "./async.js";
 
+// Loading bar
+const topbar = require("topbar");
+topbar.config({
+  autoRun      : false,
+  barThickness : 3,
+  barColors    : {
+      '0'      : 'rgba(26,  188, 156, .9)',
+      '.25'    : 'rgba(52,  152, 219, .9)',
+      '.50'    : 'rgba(241, 196, 15,  .9)',
+      '.75'    : 'rgba(230, 126, 34,  .9)',
+      '1.0'    : 'rgba(211, 84,  0,   .9)'
+  },
+  shadowBlur   : 10,
+  shadowColor  : 'rgba(0,   0,   0,   .6)'
+})
+
 export function setLocation(type) {
   const search = document.getElementById("search");
   let place = search.value;
   if (type === "search") {
+    topbar.show();
     fetchWeather(place)
       .then((data) => {
         // console.log(data);
+        topbar.progress(0.5);
         if (data.cod === 200) {
           // Left card
           let icon = data.weather[0].icon;
@@ -52,6 +70,7 @@ export function setLocation(type) {
           // Fetch forecast
           fetchForecast(place)
             .then((data) => {
+              topbar.progress(0.75);
               // console.log(data);
               if (data.cod === "200") {
                 let forecast = [];
@@ -69,6 +88,7 @@ export function setLocation(type) {
               console.log("Error in setting location for forecast: " + error);
             });
         } else if (data.cod === '404') {
+          topbar.hide();
           document.getElementById("section").style.display = "none";
           document.getElementById("footer").style.display = "none";
           alert("Place not found. Please try again.");
@@ -80,6 +100,7 @@ export function setLocation(type) {
   } else if (type === "current") {
     try {
       navigator.geolocation.getCurrentPosition((position) => {
+        topbar.show();
         const { latitude, longitude } = position.coords;
         fetchWeather(latitude, longitude)
           .then((data) => {
@@ -120,9 +141,12 @@ export function setLocation(type) {
                 windspeed,
                 humidityAndPressure
               );
+              topbar.progress(0.5);
             } else if (data.cod === 404) {
+              topbar.hide();
               alert("Place not found. Please try again.");
             } else {
+              topbar.hide();
               alert("Something went wrong. Please try again.");
             }
           })
@@ -139,6 +163,7 @@ export function setLocation(type) {
                 forecast.push(data.list[i]);
               }
               updateForecast(forecast);
+              topbar.progress(0.75);
             } else if (data.cod === "404") {
               alert("Place not found. Please try again.");
             } else {
@@ -240,6 +265,11 @@ function updateWeather(
     document.getElementById(
       "section"
     ).style.backgroundImage = `url(${response.url})`;
+    topbar.progress(1);
+    // Hide topbar in 1 second
+    setTimeout(() => {
+      topbar.hide();
+    }, 1000);
   });
 }
 
