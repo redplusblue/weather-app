@@ -32,8 +32,8 @@ export function checkState(x) {
 
 x.onchange = checkState; // Attach listener function on state changes
 
-// At H = 300 or W = 350 display error message
-let y = window.matchMedia("(max-width: 350px) or (max-height: 300px)");
+// At H = 150 or W = 350 display error message
+let y = window.matchMedia("(max-width: 350px) or (max-height: 150px)");
 
 function displayError(y){
     if (y.matches) {

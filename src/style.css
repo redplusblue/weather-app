@@ -377,6 +377,18 @@ footer:hover {
   }
 }
 
+@media screen and (max-height: 300px) {
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  #search-container{
+    margin: 0px;
+    gap: 1px;
+  }
+}
+
 /* Disable for small screens:  */
 @media screen and (max-width: 350px) {
   html {
@@ -387,7 +399,7 @@ footer:hover {
   }
 }
 
-@media screen and (max-height: 300px) {
+@media screen and (max-height: 150px) {
   html {
     background-color: #9147ff;
   }
