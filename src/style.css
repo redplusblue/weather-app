@@ -64,11 +64,11 @@ header {
   font-size: 13px;
   font-family: "Courier New", Courier, monospace;
   padding-left: 5px;
-  width: 20vw;
+  width: max(200px, 20vw);
   border-radius: 10px;
   line-height: 1.5;
   transition: box-shadow 100ms ease-in, border 100ms ease-in,
-    background-color 100ms ease-in;
+  background-color 100ms ease-in;
   border: 2px solid #dee1e2;
   color: rgb(14, 14, 16);
   background: #dee1e2;
@@ -106,7 +106,7 @@ header {
   border-radius: 10px;
   font-size: 13px;
   height: 30px;
-  width: 10vw;
+  width: max(100px, 10vw);
   background-color: var(--purple);
   color: white;
   padding: 0 10px;
@@ -337,13 +337,60 @@ footer:hover {
   height: 20px;
 }
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 1250px) {
+  body {
+    grid-template-rows: 25% auto auto;
+    grid-template-columns: 100%; 
+  }
+  #title {
+    font-size: min(4.25rem, 375%);
+  }
+  #search-button, #current-location-button {
+    font-size: 12px;
+    padding: 1px;
+  }
+  #weather-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #weather-card > div {
+    width: 90%;
+  }
+  #weather-info > * {
+    font-size: min(25px, 150%);
+  }
+  footer {
+    grid-template-columns: auto;
+  }
+  #info, #credits {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 550px) {
+  body {
+    grid-template-rows: 45% auto auto;
+    grid-template-columns: 100%; 
+  }
+}
+
+/* Disable for small screens:  */
+@media screen and (max-width: 350px) {
+  html {
+    background-color: #9147ff;
+  }
   body {
     display: none;
   }
 }
 
-@media screen and (max-height: 660px) {
+@media screen and (max-height: 300px) {
+  html {
+    background-color: #9147ff;
+  }
   body {
     display: none;
   }

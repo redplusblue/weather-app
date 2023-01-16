@@ -1,6 +1,8 @@
 // Import setlocation function
 import "./style.css";
 import { setLocation } from "./content.js";
+// To make the app responsive
+import "./responsive.js";
 
 export function createLayout() {
   const header = document.createElement("header");
