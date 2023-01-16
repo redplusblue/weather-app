@@ -1,6 +1,6 @@
 # The-Weather-App
 ### Get real-time weather updates in a visually pleasing interface, crafted with JavaScript, CSS, and utilizing OpenWeatherAPI.
-
+[![pages-build-deployment](https://github.com/redplusblue/weather-app/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/redplusblue/weather-app/actions/workflows/pages/pages-build-deployment)
 <table>
   <td align="center"><b>Made using:</b></td>
   <td> 
