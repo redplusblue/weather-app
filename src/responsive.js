@@ -1,6 +1,6 @@
 let x = window.matchMedia("(max-width: 1250px)");
 
-function checkState(x) {
+export function checkState(x) {
     const weatherCard = document.getElementById("weather-card");
         const iconContainer = document.getElementById("icon-container");
         const weatherInfo = document.getElementById("weather-info");
