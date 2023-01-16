@@ -38,7 +38,7 @@
 
 ### What I could've done better (Working on it...):
 1. The size of the app ~ 1 MB, not the best for cross platform and cross network stability, but I anticipate that it wont ruin the experience for the average viewer.
-2. Compatibility for mobile phones
+2. ~~Compatibility for mobile phones~~ Now works on mobile!
 
 <br>
 
