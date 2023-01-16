@@ -17,6 +17,7 @@
 
 <a href="https://redplusblue.github.io/weather-app/"><img src="src/data/preview.png" alt="A preview picture" title="Click Me!"></a>
 <a href="https://redplusblue.github.io/weather-app/"><img src="src/data/preview-1.png" alt="A preview picture" title="Click Me!"></a>
+<a href="https://redplusblue.github.io/weather-app/"><img width="400px" src="src/data/preview-mobile.png" alt="A preview picture" title="Click Me!"></a>
 
 ## [Click to open](https://redplusblue.github.io/weather-app/)
 
@@ -24,10 +25,11 @@
 1. Provides real-time weather information including but not limited to temperature, humidity, wind speed, sunrise, sunset, visibility alongwith a forecast for the next 3-4 days. 
 2. Can check the weather for [any*](http://bulk.openweathermap.org/sample/) city by searching its name.
 3. Can also fetch the weather for your precise current location.
+4. Fetches a random image from Unsplash which might be a picture of the current location (unsplash is random sometimes).
 
 ## What I used/learned:
 1. JS: callbacks, promises, Asynchronous functions, async/await, fetch, .then()
-2. CSS: Multiple animations
+2. CSS: Multiple animations, media queries.
 
 <br>
 
