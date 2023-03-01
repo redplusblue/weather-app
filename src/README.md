@@ -4,3 +4,4 @@
 - [x] Fix cors 
 - [x] Integrate Babel
 - [x] Implement Loading Screen
+- [ ] Saved cities 
