@@ -50,6 +50,7 @@ header {
   font-family: "Cheap Pine", cursive;
   cursor: default;
   user-select: none;
+  color: white;
 }
 
 #search-container {

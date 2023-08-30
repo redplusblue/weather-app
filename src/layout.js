@@ -187,6 +187,7 @@ function addListeners() {
       ? "rgba(255, 255, 255, 0.85)"
       : "rgba(0, 0, 0, 0.85)";
     let fontColor = dark ? "rgba(0, 0, 0, 0.85)" : "rgba(255, 255, 255, 0.85)";
+    let titleColor = dark ? "white" : "black";
     // Dark mode button
     darkModeText.innerHTML =
       darkModeText.innerHTML === "Dark Mode" ? "Light Mode" : "Dark Mode";
@@ -202,7 +203,7 @@ function addListeners() {
       document.body.style.backgroundColor === "rgba(0, 0, 0, 0.9)"
         ? "white"
         : "rgba(0, 0, 0, 0.9)";
-    title.style.color = title.style.color === "white" ? "black" : "white";
+    title.style.color = titleColor;
   });
 
   searchButton.disabled = true;
