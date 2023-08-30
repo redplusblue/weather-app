@@ -9,18 +9,18 @@ import {
 // Loading bar
 const topbar = require("topbar");
 topbar.config({
-  autoRun      : false,
-  barThickness : 3,
-  barColors    : {
-      '0'      : 'rgba(26,  188, 156, .9)',
-      '.25'    : 'rgba(52,  152, 219, .9)',
-      '.50'    : 'rgba(241, 196, 15,  .9)',
-      '.75'    : 'rgba(230, 126, 34,  .9)',
-      '1.0'    : 'rgba(211, 84,  0,   .9)'
+  autoRun: false,
+  barThickness: 3,
+  barColors: {
+    0: "rgba(26,  188, 156, .9)",
+    ".25": "rgba(52,  152, 219, .9)",
+    ".50": "rgba(241, 196, 15,  .9)",
+    ".75": "rgba(230, 126, 34,  .9)",
+    "1.0": "rgba(211, 84,  0,   .9)",
   },
-  shadowBlur   : 10,
-  shadowColor  : 'rgba(0,   0,   0,   .6)'
-})
+  shadowBlur: 10,
+  shadowColor: "rgba(0,   0,   0,   .6)",
+});
 
 export function setLocation(type) {
   const search = document.getElementById("search");
@@ -87,7 +87,7 @@ export function setLocation(type) {
             .catch((error) => {
               console.log("Error in setting location for forecast: " + error);
             });
-        } else if (data.cod === '404') {
+        } else if (data.cod === "404") {
           topbar.hide();
           document.getElementById("section").style.display = "none";
           document.getElementById("footer").style.display = "none";
@@ -259,17 +259,24 @@ function updateWeather(
   iconContainer.style.display = "flex";
   weatherInfo.style.display = "flex";
   factsContainer.style.display = "flex";
+  // While background is fetched, section has a dark background for readability
+  document.querySelector("section").style.background = `#b4b4b4`;
   // Add a background image based on location
   fetchWeatherBackground(description).then((response) => {
+    if (response === undefined) {
+      return;
+    }
+    // Reset section background
+    document.querySelector("section").style.background = `#fff`;
     // Get section element
     document.getElementById(
       "section"
     ).style.backgroundImage = `url(${response.url})`;
     topbar.progress(1);
-    // Hide topbar in 1 second
+    // Hide topbar in 5 seconds
     setTimeout(() => {
       topbar.hide();
-    }, 1000);
+    }, 5000);
   });
 }
 

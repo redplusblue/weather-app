@@ -182,12 +182,26 @@ function addListeners() {
   const darkModeText = document.getElementById("dark-mode-text");
   const title = document.getElementById("title");
   darkMode.addEventListener("click", () => {
+    let dark = darkModeText.innerHTML === "Dark Mode" ? true : false;
+    let primaryColor = dark
+      ? "rgba(255, 255, 255, 0.85)"
+      : "rgba(0, 0, 0, 0.85)";
+    let fontColor = dark ? "rgba(0, 0, 0, 0.85)" : "rgba(255, 255, 255, 0.85)";
+    // Dark mode button
+    darkModeText.innerHTML =
+      darkModeText.innerHTML === "Dark Mode" ? "Light Mode" : "Dark Mode";
+    // Change value of css variables related to font and bg
+    document
+      .querySelector(":root")
+      .style.setProperty("--font-color", fontColor);
+    document
+      .querySelector(":root")
+      .style.setProperty("--light-black", primaryColor);
+    // Body background color
     document.body.style.backgroundColor =
       document.body.style.backgroundColor === "rgba(0, 0, 0, 0.9)"
         ? "white"
         : "rgba(0, 0, 0, 0.9)";
-    darkModeText.innerHTML =
-      darkModeText.innerHTML === "Dark Mode" ? "Light Mode" : "Dark Mode";
     title.style.color = title.style.color === "white" ? "black" : "white";
   });
 
@@ -209,12 +223,12 @@ function addListeners() {
   });
 
   searchButton.addEventListener("click", () => {
-      setLocation("search");
-      // To prevent multiple api calls
-      searchButton.disabled = true;
-      currentLocationButton.disabled = false;
-      section.style.display = "flex";
-      footer.style.display = "grid";
+    setLocation("search");
+    // To prevent multiple api calls
+    searchButton.disabled = true;
+    currentLocationButton.disabled = false;
+    section.style.display = "flex";
+    footer.style.display = "grid";
   });
 
   currentLocationButton.addEventListener("click", () => {

@@ -12,7 +12,8 @@
   --box-shadow: 0px 4px 6px 0px rgba(50, 50, 93, 0.11),
     0px 1px 3px 0px rgba(0, 0, 0, 0.08);
   --purple: #9147ff;
-  --light-black: rgba(0, 0, 0, 0.6);
+  --light-black: rgba(255, 255, 255, 0.6);
+  --font-color: rgba(0, 0, 0, 0.85);
 }
 
 html,
@@ -68,7 +69,7 @@ header {
   border-radius: 10px;
   line-height: 1.5;
   transition: box-shadow 100ms ease-in, border 100ms ease-in,
-  background-color 100ms ease-in;
+    background-color 100ms ease-in;
   border: 2px solid #dee1e2;
   color: rgb(14, 14, 16);
   background: #dee1e2;
@@ -143,6 +144,10 @@ section {
   min-width: max-content;
 }
 
+#weather-info {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 #weather-info,
 #icon-container,
 #facts-container {
@@ -155,11 +160,15 @@ section {
   margin: 5px;
   padding: 15px;
   font-family: "Elza Regular", cursive;
-  color: rgba(255, 255, 255, 0.85);
   box-shadow: var(--box-shadow);
   text-align: center;
   font-size: 1.2rem;
   opacity: 85%;
+}
+
+#icon-container,
+#facts-container {
+  color: var(--font-color);
 }
 
 #weather-info:hover {
@@ -174,7 +183,6 @@ section {
 #icon-container:hover,
 #facts-container:hover,
 #forecast-card > div:hover {
-  background-color: rgba(0, 0, 0, 0.7);
   opacity: 100%;
 }
 
@@ -206,7 +214,7 @@ section {
   margin: 5px;
   padding: 15px;
   font-family: "Elza Regular", cursive;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--font-color);
   background-color: var(--light-black);
   box-shadow: var(--box-shadow);
   text-align: center;
@@ -225,8 +233,8 @@ section {
 }
 
 footer {
-  color: rgba(255, 255, 255, 0.75);
-  background-color: black;
+  color: var(--font-color);
+  background-color: var(--light-black);
   justify-self: center;
   width: fit-content;
   display: none;
@@ -337,20 +345,20 @@ footer:hover {
   height: 20px;
 }
 
-
 @media screen and (max-width: 1250px) {
   body {
     grid-template-rows: 25% auto auto;
-    grid-template-columns: 100%; 
+    grid-template-columns: 100%;
   }
   #title {
     font-size: min(4.25rem, 375%);
   }
-  #search-button, #current-location-button {
+  #search-button,
+  #current-location-button {
     font-size: 12px;
     padding: 1px;
   }
-  #weather-card{
+  #weather-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -365,7 +373,8 @@ footer:hover {
   footer {
     grid-template-columns: auto;
   }
-  #info, #credits {
+  #info,
+  #credits {
     display: none;
   }
 }
@@ -373,7 +382,7 @@ footer:hover {
 @media screen and (max-height: 550px) {
   body {
     grid-template-rows: 45% auto auto;
-    grid-template-columns: 100%; 
+    grid-template-columns: 100%;
   }
 }
 
@@ -383,7 +392,7 @@ footer:hover {
     flex-direction: row;
     justify-content: center;
   }
-  #search-container{
+  #search-container {
     margin: 0px;
     gap: 1px;
   }
